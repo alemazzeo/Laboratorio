@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import time
 import visa
 import numpy as np
@@ -16,7 +18,7 @@ class SimuladorVISA:
         print('Modo de respuesta automatica: 0')
     
     def query(self, cadena, separator=''):
-        print('>> ' + cadena)
+        #print('>> ' + cadena)
         if separator == ',':
             return '0,1'
         else:
@@ -29,15 +31,16 @@ class SimuladorVISA:
                 return '0'
     
     def query_ascii_values(self, cadena, **args):
-        print(cadena)
+        #print(cadena)
         return np.random.rand(1)[0] , np.random.rand(1)[0], 0, 0
             
     def query_binary_values(self, cadena, **args):
-        print(cadena)
+        #print(cadena)
         return np.random.rand(100)
     
     def write(self, cadena):
-        print(cadena)
+        #print(cadena)
+        pass
 
 class Lockin(object):
     '''
@@ -52,6 +55,16 @@ class Lockin(object):
     modo_simulador : Bool (opcional)
         Permite simular la comunicación con el instrumento. Utiliza la clase
         SimuladorVisa para reemplazar los comandos query y write de PyVisa.
+        
+    Notas del modo simulador:
+    -----
+        
+        Algunas funciones pueden resultar afectadas estéticamente en el modo
+        simulador dado que se visualizan los comandos enviados.
+        
+        Otros pueden tener inconvenientes por las respuestas improvisadas
+        tales como consultarSimultaneo (falla si se pide un número distinto
+        a 4 parámetros). Ésto no ocurre al utilizar el instrumento.
     '''
     
     #----------------------------------------------------------------------
@@ -678,9 +691,9 @@ class Lockin(object):
         
         Valores permitidos:
         ------------------
-            'X', 'Y', 'R', 'T', 
-            'AuxIn1', 'AuxIn2', 'AuxIn3', 'AuxIn4', 
-            'Frec', 'Ch1', 'Ch2'
+        'X', 'Y', 'R', 'T', 
+        'AuxIn1', 'AuxIn2', 'AuxIn3', 'AuxIn4', 
+        'Frec', 'Ch1', 'Ch2'
         """
         
         valores = {'X': 1, 'Y': 2, 'R': 3, 'T': 4,

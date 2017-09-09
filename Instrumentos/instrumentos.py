@@ -796,7 +796,7 @@ class Lockin(object):
 #            time.sleep(0.1)
 #        print('Completo. \nTransmitiendo datos a la PC...', end='')
 #        
-#        self._ejeDatos = self._lockin.query_binary_values(orden, datatype='B', 
+#        self._ejeDatos = self._lockin.query_binary_values(orden, datatype='f', 
 #                                                 container=np.array)
 #        self._ejeTiempo = np.linspace(0,duracion,puntos)
 #        print('Lectura finalizada.')
